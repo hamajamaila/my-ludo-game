@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎲 Ludo Game 🎲</h1>
+        
+        <div class="game-wrapper">
+            <div class="game-info">
+                <div class="player-info" id="playerInfo">
+                    <div class="current-player">
+                        <span>Current Player:</span>
+                        <span id="currentPlayer" class="player-name">Red</span>
+                    </div>
+                    <div class="dice-section">
+                        <button id="diceBtn" class="dice-button">Roll Dice</button>
+                        <div id="diceValue" class="dice-value">-</div>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item red">Red</div>
+                    <div class="legend-item yellow">Yellow</div>
+                    <div class="legend-item blue">Blue</div>
+                    <div class="legend-item green">Green</div>
+                </div>
+            </div>
+
+            <div class="board-wrapper">
+                <canvas id="gameBoard" width="600" height="600"></canvas>
+            </div>
+
+            <div class="game-controls">
+                <button id="resetBtn" class="reset-button">New Game</button>
+                <button id="rulesBtn" class="rules-button">Rules</button>
+            </div>
+        </div>
+
+        <div id="rulesModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Ludo Rules</h2>
+                <ul>
+                    <li>Roll the dice to move your pieces forward</li>
+                    <li>Each player has 4 pieces of their color</li>
+                    <li>Roll a 6 to bring a piece out from home</li>
+                    <li>Roll a 6 to get another turn</li>
+                    <li>Capture opponent's pieces by landing on the same square</li>
+                    <li>First player to get all 4 pieces to home wins!</li>
+                    <li>Each player must roll the dice to determine move</li>
+                    <li>Pieces move in a specific path around the board</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="winnerModal" class="modal">
+            <div class="modal-content winner-modal">
+                <h2 id="winnerText">Player Red Wins!</h2>
+                <button id="playAgainBtn" class="play-again-button">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
