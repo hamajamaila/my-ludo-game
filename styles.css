@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-wrapper {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.player-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.current-player {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.current-player span:first-child {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.player-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.player-name.red-player {
+    background-color: #ff4444;
+    color: white;
+}
+
+.player-name.yellow-player {
+    background-color: #ffdd44;
+    color: black;
+}
+
+.player-name.blue-player {
+    background-color: #4444ff;
+    color: white;
+}
+
+.player-name.green-player {
+    background-color: #44dd44;
+    color: white;
+}
+
+.dice-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dice-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dice-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dice-button:active {
+    transform: scale(0.95);
+}
+
+.dice-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.dice-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.legend {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.legend-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.legend-item.red {
+    background-color: #ff4444;
+}
+
+.legend-item.yellow {
+    background-color: #ffdd44;
+    color: black;
+}
+
+.legend-item.blue {
+    background-color: #4444ff;
+}
+
+.legend-item.green {
+    background-color: #44dd44;
+}
+
+.board-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#gameBoard {
+    border: 3px solid #333;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reset-button,
+.rules-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-button {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.reset-button:hover {
+    background-color: #ff5252;
+    transform: scale(1.05);
+}
+
+.rules-button {
+    background-color: #4ecdc4;
+    color: white;
+}
+
+.rules-button:hover {
+    background-color: #45b7b0;
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.modal-content ul {
+    list-style-position: inside;
+    line-height: 1.8;
+    color: #555;
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.winner-modal {
+    text-align: center;
+    padding: 50px 30px;
+}
+
+#winnerText {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #667eea;
+}
+
+.play-again-button {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-again-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .game-wrapper {
+        padding: 15px;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .legend {
+        justify-content: center;
+    }
+
+    #gameBoard {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+    .player-name {
+        font-size: 1.1rem;
+    }
+
+    .dice-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 30% auto;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+    }
+}
